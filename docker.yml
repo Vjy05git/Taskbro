@@ -1,0 +1,24 @@
+---
+
+- name: Docker container
+  hosts: all
+  become: true
+
+  tasks:
+  - name: install docker 
+    yum:
+     name: docker.io
+     state: present
+    when: ansible_os_family == "redhat"
+
+  - name: Install package
+    apt:
+     name: docker.io
+     state: present
+    when: ansible_os_family == "Debian"
+
+  - name: run container
+    docker_container:
+     name: nginx
+     image: nginx:1.25.3-alpine
+     state: present
