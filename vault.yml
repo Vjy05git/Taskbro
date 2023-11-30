@@ -8,6 +8,12 @@
    - /home/ubuntu/uservault.yml
 
   tasks:
+  - name: Git installation
+    dnf:
+     name: git
+     state: present
+     
   - name: Git repo
-    git:  https://{{ username }}:{{ password }}@github.com/Vjy05git/Vault.git
-    dest: /home/ubuntu/repo
+    git:
+     repo: https://Vjy05git:{{password}}@github.com/Vjy05git/Vault.git
+     dest: /home/ubuntu/
