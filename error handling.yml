@@ -1,0 +1,20 @@
+---
+
+- name: Ignore error
+  become: true 
+  hosts: all
+
+  tasks:
+  - name: Install
+    yum:
+      name: httpd
+      state: present
+    when: ansible_os_family == "Debian"
+    ignore_errors: yes
+
+  - name: Copy
+    copy:
+     src: /etc/test.txt
+     dest: /home/test.txt
+
+     
