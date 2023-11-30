@@ -1,0 +1,17 @@
+---
+
+- name: Copy file 
+  become: true
+  hosts: all
+
+  vars:
+    spath: /etc/test.conf
+    dpath: /home/test.conf
+  tasks:
+  - name: copy file 
+    copy:
+       src: "{{spath}}"
+       dest: "{{dpath}}"
+    #   owner: foo
+    #  group: foo
+    #  mode: '0644'

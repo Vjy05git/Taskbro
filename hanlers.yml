@@ -1,0 +1,31 @@
+---
+
+- name: Handlers
+  become: true
+  hosts: all
+
+  vars:
+    service: apache2
+
+  tasks:
+  - name: Install package
+    yum:
+      name: "{{ service }}"
+      state: present
+    notify: service start
+    when: ansible_os_family == "Redhat"
+
+  - name: Install package
+    apt:
+      name: "{{ service }}"
+      state: present
+    notify: service start
+    when: ansible_os_family == "Debian"
+
+
+  handlers:
+  - name: service start
+    service:
+       name: "{{ service }}"
+       state: started
+

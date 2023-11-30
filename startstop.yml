@@ -1,0 +1,27 @@
+---
+
+- name: STOP START RESTART
+  hosts: all
+  become: true
+
+  vars: 
+    service: apache2
+
+  tasks:
+    - name: stop
+      service:
+        name: "{{ service }}"
+        state: stopped
+      tags: stop
+
+    - name: start
+      service:
+        name: "{{ service }}"
+        state: started
+      tags: start
+
+    - name: restart 
+      service:
+        name: "{{ service }}"
+        state: restarted
+      tags: restart

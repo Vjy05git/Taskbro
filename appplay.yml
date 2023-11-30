@@ -1,0 +1,21 @@
+---
+- name: App installation
+  hosts: all
+  become: true
+
+  vars:
+
+    app: glibc*
+
+  tasks:
+  - name: Install package Debian 
+    apt:
+      name: "{{ app }}"
+      state: present
+    when: ansible_os_family == "Debian"
+   
+  - name: Install package Redhat
+    yum:    
+      name: "{{ app }}"
+      state: present
+    when: ansible_os_family == "RedHat"

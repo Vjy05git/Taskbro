@@ -1,0 +1,22 @@
+---
+- name: To create user and group
+  hosts: all
+  become: true
+
+  vars:
+    uname: test
+    group: GroupTest
+
+  tasks:
+  - name: Group add
+    group:
+      name: "{{group}}"
+      state: present
+      
+
+  - name: User add
+    user:
+      name: "{{ uname }}"
+      groups: "{{ group }}"
+      state: present
+      createhome: yes
