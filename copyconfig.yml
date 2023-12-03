@@ -12,6 +12,6 @@
     copy:
        src: "{{spath}}"
        dest: "{{dpath}}"
-    #   owner: foo
-    #  group: foo
-    #  mode: '0644'
+    #   owner: 
+    #  group: 
+    #  mode: 
